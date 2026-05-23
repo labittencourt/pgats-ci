@@ -1,0 +1,26 @@
+name: 'Execução Manual'
+
+on: 
+  workflow_dispatch:
+
+jobs: 
+  2e2-tests:
+    runs-on: ubutun-latest
+      steps:
+        - uses: actions/checkout@v4
+        - uses: actions/setup-node@v4
+          with:
+            node-version: 24.x
+        
+        - name: Instalando Yarn
+          run: npm install -g Yarn
+
+        - name: Instalando Dependencias
+          run: yarn
+
+        - name: Instalando Browsers do Playwright
+          run: yarn playwright install 
+
+        - name: Executando testes 2e2
+          run: yarn run 2e2
+          
